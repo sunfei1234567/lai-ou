@@ -29,7 +29,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.212);
+  background: rgba(0, 0, 0, 0.32);
 }
 
 .contact-hero-content {
@@ -80,6 +80,33 @@
 
 .contact-hero-badges .badge svg {
   stroke: var(--primary-light);
+}
+
+/* CTA 按钮样式 */
+.contact-hero-content .cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--primary-light) 0%, #5a9fd4 100%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 105, 148, 0.4);
+}
+
+.contact-hero-content .cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 105, 148, 0.5);
+  background: linear-gradient(135deg, #5a9fd4 0%, var(--primary-light) 100%);
+}
+
+.contact-hero-content .cta-button svg {
+  stroke: #fff;
 }
 
 /* 全球服务网络版块 */
