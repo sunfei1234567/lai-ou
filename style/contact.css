@@ -442,9 +442,7 @@
 }
 
 @media (max-width: 992px) {
-  .contact-hero {
-    min-height: 500px;
-  }
+ 
 
   .contact-hero-content h1 {
     font-size: 32px;
@@ -469,10 +467,7 @@
 }
 
 @media (max-width: 768px) {
-  .contact-hero {
-    min-height: 450px;
-    margin-top: 100px;
-  }
+ 
 
   .contact-hero-content h1 {
     font-size: 26px;

@@ -210,7 +210,7 @@
                         <span>协助租赁办公场所和员工宿舍</span>
                     </div>
                 </div>
-                <a href="#" class="more-link">更多服务 →</a>
+                <a href="javascript:void(0)" onclick="scrollToTop()" class="more-link">更多服务 →</a>
             </div>
         </div>
     </section>
@@ -466,6 +466,14 @@
         function toggleSubmenu(element) {
             const parent = element.parentElement;
             parent.classList.toggle('active');
+        }
+
+        // 平滑滚动到顶部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         // 点击页面其他地方关闭菜单

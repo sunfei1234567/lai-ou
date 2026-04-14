@@ -171,7 +171,7 @@
                     <div class="checkmark-list-item"><span>代办员工薪酬计算和社会保障申报 。</span></div>
                     <div class="checkmark-list-item"><span>协助处理反向增值税及税务争议解决 。</span></div>
                     <div class="checkmark-list-item"><span>财税ERP本地化部署咨询 。</span></div>
-                    <a href="#" class="more-link">更多服务 →</a>
+                    <a href="javascript:void(0)" onclick="scrollToTop()" class="more-link">更多服务 →</a>
                 </div>
 
                 <div class="service-detail-card" data-aos="fade-up" style="margin-top: 40px;">
@@ -318,6 +318,14 @@
         function toggleSubmenu(element) {
             const parent = element.parentElement;
             parent.classList.toggle('active');
+        }
+
+        // 平滑滚动到顶部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         // 点击页面其他地方关闭菜单
