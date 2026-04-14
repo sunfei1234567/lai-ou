@@ -151,20 +151,21 @@
                 <div class="country-hero-right" data-aos="fade-up" data-aos-delay="100">
                     <div class="contact-form-card">
                         <h3>获取波兰出海方案</h3>
-                        <form class="contact-form">
+                        <form class="contact-form" id="contactForm" data-country="波兰">
                             <div class="form-group">
-                                <input type="text" placeholder="您的姓名" required>
+                                <input type="text" name="name" placeholder="您的姓名" required>
                             </div>
                             <div class="form-group">
-                                <input type="tel" placeholder="手机号码" required>
+                                <input type="tel" name="phone" placeholder="手机号码" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="联系邮箱">
+                                <input type="email" name="email" placeholder="联系邮箱">
                             </div>
                             <div class="form-group">
-                                <textarea rows="3" placeholder="您的咨询需求"></textarea>
+                                <textarea name="message" rows="3" placeholder="您的咨询需求"></textarea>
                             </div>
-                            <button type="submit" class="submit-btn">立即咨询</button>
+                            <button type="submit" class="submit-btn" id="submitBtn">立即咨询</button>
+                            <div id="formMessage" style="margin-top: 15px; font-size: 14px;"></div>
                         </form>
                     </div>
                 </div>
@@ -489,6 +490,9 @@
             }
         });
     </script>
+
+    <!-- 表单提交处理 -->
+    <script src="../../js/form-handler.js"></script>
 
     <!-- AOS 动画库 -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
