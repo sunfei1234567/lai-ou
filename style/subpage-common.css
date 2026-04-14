@@ -267,6 +267,7 @@
 @media (max-width: 1200px) {
   .subpage-hero h1 {
     font-size: 42px;
+    white-space: normal;
   }
 
   .arc-modules-grid {
