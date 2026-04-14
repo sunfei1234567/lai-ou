@@ -1,0 +1,51 @@
+/* 法律咨询页面特有样式 */
+
+/* 纯文本卡片 */
+.text-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin: 40px 0;
+}
+
+.text-card {
+    background: #f8f9fa;
+    padding: 20px 16px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+}
+
+.text-card p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+.text-card:hover {
+    background: var(--white);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(9, 81, 155, 0.1);
+    transform: translateY(-5px);
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .text-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .text-card-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .text-card {
+        padding: 20px;
+    }
+}

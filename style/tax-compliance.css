@@ -1,0 +1,24 @@
+/* 财税合规页面特有样式 */
+
+/* 财税合规页面可以根据需要添加特定样式 */
+/* 当前使用 subpage-common.css 中的通用样式即可 */
+
+/* 例如：税务卡片特殊样式 */
+.tax-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.tax-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(9, 81, 155, 0.1);
+}
+
+@media (max-width: 768px) {
+    .tax-card {
+        padding: 20px;
+    }
+}

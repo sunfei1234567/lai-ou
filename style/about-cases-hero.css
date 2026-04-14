@@ -1,0 +1,28 @@
+/* 关于我们和徕欧智汇页面的 Hero 居中样式 */
+
+.about-page .subpage-hero,
+.cases-page .subpage-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-page .subpage-hero::before,
+.cases-page .subpage-hero::before {
+  background: rgba(0, 0, 0, 0.10);
+}
+
+.about-page .subpage-hero .container,
+.cases-page .subpage-hero .container {
+  display: flex;
+  justify-content: center;
+}
+
+.about-page .subpage-hero-content,
+.cases-page .subpage-hero-content {
+  max-width: 700px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+

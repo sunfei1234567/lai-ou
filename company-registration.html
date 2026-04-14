@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司注册 - 徕欧跨境服务</title>
+    <link rel="stylesheet" href="style/common.css">
+    <link rel="stylesheet" href="style/subpage-common.css">
+    <link rel="stylesheet" href="style/company-registration.css">
+    <!-- AOS 动画库 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- 顶部信息栏 -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    <span>+86 13776009415</span>
+                </div>
+                <div class="top-bar-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    <span>dapeng.liang@laiouglobal.com</span>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <!-- <div class="lang-switcher">
+                    <span class="lang-item active" data-lang="zh">中文</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-item" data-lang="en">English</span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="徕欧" onerror="this.style.display='none'">
+                </a>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">首页</a>
+                <div class="nav-item has-submenu">
+                    服务内容
+                    <div class="submenu">
+                        <a href="company-registration.html">公司注册</a>
+                        <a href="tax-compliance.html">财税合规</a>
+                        <a href="legal-consultation.html">法律咨询</a>
+                        <a href="qualifications.html">资质办理</a>
+                    </div>
+                </div>
+                <div class="nav-item has-submenu">
+                    国家/地区
+                    <div class="submenu">
+                        <a href="pages/country/hungary.html" class="submenu-item">
+                            <img src="images/xiongyali.png" alt="匈牙利">
+                            <span>匈牙利</span>
+                        </a>
+                        <a href="pages/country/slovakia.html" class="submenu-item">
+                            <img src="images/siluofake.png" alt="斯洛伐克">
+                            <span>斯洛伐克</span>
+                        </a>
+                        <a href="pages/country/romania.html" class="submenu-item">
+                            <img src="images/luomaniya.png" alt="罗马尼亚">
+                            <span>罗马尼亚</span>
+                        </a>
+                        <a href="pages/country/czech.html" class="submenu-item">
+                            <img src="images/jieke.png" alt="捷克">
+                            <span>捷克</span>
+                        </a>
+                        <a href="pages/country/poland.html" class="submenu-item">
+                            <img src="images/bolan.png" alt="波兰">
+                            <span>波兰</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-item">关于我们</a>
+                <a href="cases.html" class="nav-item">徕欧智汇</a>
+            </nav>
+
+            <a href="contact.html" class="contact-btn">
+                联系我们 ↗
+            </a>
+
+            <!-- 移动端汉堡菜单按钮 -->
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- 移动端导航菜单 -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-nav-item">首页</a>
+            <div class="mobile-nav-item has-submenu">
+                <span onclick="toggleSubmenu(this)">服务内容</span>
+                <div class="mobile-submenu">
+                    <a href="company-registration.html">公司注册</a>
+                    <a href="tax-compliance.html">财税合规</a>
+                    <a href="legal-consultation.html">法律咨询</a>
+                    <a href="qualifications.html">资质办理</a>
+                </div>
+            </div>
+            <div class="mobile-nav-item has-submenu">
+                <span onclick="toggleSubmenu(this)">国家/地区</span>
+                <div class="mobile-submenu">
+                    <a href="pages/country/hungary.html">匈牙利</a>
+                    <a href="pages/country/slovakia.html">斯洛伐克</a>
+                    <a href="pages/country/romania.html">罗马尼亚</a>
+                    <a href="pages/country/czech.html">捷克</a>
+                    <a href="pages/country/poland.html">波兰</a>
+                </div>
+            </div>
+            <a href="about.html" class="mobile-nav-item">关于我们</a>
+            <a href="cases.html" class="mobile-nav-item">徕欧智汇</a>
+            <a href="contact.html" class="mobile-nav-item mobile-contact">联系我们</a>
+        </div>
+    </header>
+
+    <!-- Subpage Hero -->
+    <section class="subpage-hero" style="background-image: url('images/sub-hero1.jpg');">
+        <div class="container">
+            <div class="subpage-hero-content" data-aos="fade-up">
+                <h1>高效合规，开启中东欧商业版图</h1>
+                <p>徕欧致力于服务中资企业出海匈牙利、斯洛伐克、罗马尼亚、捷克等中东欧国家 。我们为您提供涵盖公司注册、财税代理、签证服务、认证许可的全流程“一站式”落地服务。</p>
+                <a href="contact.html" class="capsule-btn primary">获取定制化方案</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="white-section">
+        <div class="container">
+            <div class="content-block" data-aos="fade-up">
+                <h2>本地团队：高效合规，开启中东欧商业版图</h2>
+                <p>徕欧致力于服务中资企业出海匈牙利、斯洛伐克、罗马尼亚、捷克等中东欧国家 。我们为您提供涵盖公司注册、财税代理、签证服务、认证许可的全流程“一站式”落地服务。</p>
+
+                <div class="service-grid-list">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21V11a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10" />
+                            </svg>
+                        </div>
+                        <span>办理公司注册、匈牙利和欧盟税号、海关识别代码</span>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                            </svg>
+                        </div>
+                        <span>协助完成FDI和行业准入申请</span>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="8" r="7" />
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                            </svg>
+                        </div>
+                        <span>指导并协助匈牙利政府投资补贴申请</span>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                        </div>
+                        <span>提供欧盟蓝卡、工作签证、ICT签证、法人签证及家庭团聚签证申请服务</span>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9 22 9 12 15 12 15 22" />
+                            </svg>
+                        </div>
+                        <span>协助租赁办公场所和员工宿舍</span>
+                    </div>
+                </div>
+                <a href="#" class="more-link">更多服务 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arc Modules -->
+    <section class="arc-modules-section">
+        <div class="container">
+            <div class="arc-modules-grid">
+                <!-- Module 1 -->
+                <div class="arc-module-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="arc-module-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#09519b" stroke-width="2">
+                            <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21V11a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v10" />
+                        </svg>
+                    </div>
+                    <div class="arc-module-title">中东欧公司注册</div>
+                    <a href="contact.html" class="arc-module-link">获取定制方案</a>
+                </div>
+                <!-- Module 2 -->
+                <div class="arc-module-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="arc-module-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#09519b" stroke-width="2">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                    </div>
+                    <div class="arc-module-title">品牌商标注册</div>
+                    <a href="contact.html" class="arc-module-link">获取定制方案</a>
+                </div>
+                <!-- Module 3 -->
+                <div class="arc-module-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="arc-module-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#09519b" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                    </div>
+                    <div class="arc-module-title">公司信息变更</div>
+                    <a href="contact.html" class="arc-module-link">获取定制方案</a>
+                </div>
+                <!-- Module 4 -->
+                <div class="arc-module-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="arc-module-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#09519b" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
+                        </svg>
+                    </div>
+                    <div class="arc-module-title">落地文件支持</div>
+                    <a href="contact.html" class="arc-module-link">获取定制方案</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 案例展示轮播 -->
+    <section class="cases-slider-section">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>成功案例</h2>
+                <p>专业服务，助力企业稳健出海</p>
+            </div>
+        </div>
+        <div class="slider-container">
+            <div class="slider-btn prev" id="sliderPrev">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </div>
+            <div class="slider-btn next" id="sliderNext">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <div class="slider-wrapper">
+                <div class="slider-track" id="sliderTrack">
+                    <!-- 智能制造行业 -->
+                    <div class="case-card" data-aos="fade-up">
+                        <div class="case-industry">智能制造行业</div>
+                        <div class="case-title">某大型上市公司匈牙利、斯洛伐克工厂投资落地</div>
+                        <div class="case-section-title">背景</div>
+                        <div class="case-content">
+                            徕欧为国内某大型上市公司编制匈牙利、斯洛伐克工厂投资及建设可行性报告，全程协助其高效推进落地：仅用65天便完成匈牙利公司注册；在股东结构包含无法穿透的有限合伙企业及信托这一复杂前提下，成功协助其开立欧盟银行账户；公司注册完成后3个月内，顺利派出40余名ICT签证员工，并在当地成功招募8名持证高级技术工人，全方位保障客户海外工厂布局顺利推进。
+                        </div>
+                        <div class="case-section-title">方案</div>
+                        <ul class="case-list">
+                            <li>全面对比分析匈牙利、斯洛伐克两国产业政策、税收水平、政府补贴、供应链体系、物流运输效率及劳动力市场现状，精准梳理核心优势与适配点，编制专业可行的投资建设可行性报告</li>
+                            <li>协助客户高效完成海牙认证、公司注册相关法律文书撰写及法院审批等全流程事宜，精准对接企业核心需求，提供高效适配的一站式服务支持</li>
+                            <li>深耕欧盟商业银行领域，精通各银行开户偏好及全流程规范，高效协助客户快速完成账户开立，规避跨境开户各类壁垒</li>
+                            <li>依托中欧两地团队协同优势，优化拟派遣员工申请文件，全程陪同员工办理签证，精准保障工厂投产节点，有效降低人力及时间成本</li>
+                        </ul>
+                    </div>
+
+                    <!-- 物流运输行业 -->
+                    <div class="case-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="case-industry">物流运输行业</div>
+                        <div class="case-title">华东跨境物流企业罗马尼亚海外仓转运中心</div>
+                        <div class="case-section-title">背景</div>
+                        <div class="case-content">
+                            某华东跨境物流企业计划在罗马尼亚建设海外仓转运中心，以此辐射整个中东欧区域。该项目面临多重核心挑战，涵盖大宗土地租赁法律尽调、特种仓储资质审批，同时需应对跨境物流反向增值税处理、海关识别代码注册，以及外籍货车司机劳动用工合规等复杂难题，任一环节把控不当均可能影响项目推进。
+                        </div>
+                        <div class="case-section-title">方案</div>
+                        <ul class="case-list">
+                            <li>罗马尼亚本土团队全程介入，提供海外仓租赁全流程服务，包括法律尽调、商务谈判及双语合同拟定，精准规避隐性债务、土地性质变更等潜在风险，保障租赁环节合法合规</li>
+                            <li>精准设计供应链财税结构，充分运用反向增值税机制及海关识别号，有效降低企业税务成本，大幅缓解现金流压力，提升资金周转效率</li>
+                            <li>严格依据罗马尼亚当地劳动法及社会保障申报要求，制定标准化雇佣合同，规范排班薪酬体系，明确解雇补偿机制，妥善解决外籍货车司机用工合规痛点</li>
+                        </ul>
+                    </div>
+
+                    <!-- 科技创新行业 -->
+                    <div class="case-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="case-industry">科技创新行业</div>
+                        <div class="case-title">头部自动驾驶企业匈牙利路测研发中心</div>
+                        <div class="case-section-title">背景</div>
+                        <div class="case-content">
+                            某国内头部自动驾驶企业在匈牙利设立路测研发中心，开展自动驾驶算法测试及车辆实地道路测试。在测试过程中，车辆需要持续采集包含人脸、车牌等敏感个人信息以及高精地图数据，面临欧盟《通用数据保护条例》（GDPR）极为严格的数据合规监管。同时，企业希望利用匈牙利对高科技研发项目的支持政策，申请研发类政府补贴以降低研发投入成本。
+                        </div>
+                        <div class="case-section-title">方案</div>
+                        <ul class="case-list">
+                            <li>出具自动驾驶领域数据合规法律意见书，系统梳理GDPR对自动驾驶场景中个人信息采集、存储及处理的监管要求，建立符合欧盟标准的数据合规框架</li>
+                            <li>设计跨境数据传输合规机制，通过标准合同条款（SCC）等合规工具，确保中欧研发团队之间的数据共享与技术协作合法合规</li>
+                            <li>协助企业对接匈牙利投资促进局（HIPA），结合项目"实验研发中心"属性，申请最高可达25%的现金补贴及企业所得税减免，显著降低企业研发成本</li>
+                        </ul>
+                    </div>
+
+                    <!-- 食品餐饮行业 -->
+                    <div class="case-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="case-industry">食品餐饮行业</div>
+                        <div class="case-title">国内餐饮配套服务商中东欧中央厨房与门店布局</div>
+                        <div class="case-section-title">背景</div>
+                        <div class="case-content">
+                            某国内知名企业餐饮配套服务商首次布局中东欧市场，计划在布达佩斯设立中央厨房并开设3家直营门店，为在匈中资企业提供食堂餐饮服务。企业在落地过程中面临欧盟严格的食品安全认证与许可要求，以及餐饮行业复杂的增值税（VAT）申报规则。同时，公司需从中国调配核心厨师与管理团队，以确保菜品品质与运营标准。
+                        </div>
+                        <div class="case-section-title">方案</div>
+                        <ul class="case-list">
+                            <li>协助企业完成匈牙利食品安全监管机构NÉBIH的食品卫生许可申报，并推进中央厨房选址涉及的环保听证及合规审批流程，确保项目顺利落地</li>
+                            <li>结合餐饮行业适用的VAT税率及申报规则，搭建自动化财税申报模型，提升申报效率并合理优化税务成本</li>
+                            <li>为核心厨师及管理人员办理20份工作签证，顺利完成核心团队的跨境调配，保障项目按计划启动</li>
+                        </ul>
+                    </div>
+
+                    <!-- 电商零售行业 -->
+                    <div class="case-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="case-industry">电商零售行业</div>
+                        <div class="case-title">大型跨境电商平台欧洲区域分拨中心</div>
+                        <div class="case-section-title">背景</div>
+                        <div class="case-content">
+                            某大型跨境电商平台在欧洲设立区域分拨中心与线上零售主体。初期面临消费者信息收集、上万件SKU的CE认证壁垒（如低电压指令、机械指令等）、复杂的消费者权益保护，以及多国增值税注册与合并申报的繁琐流程。
+                        </div>
+                        <div class="case-section-title">方案</div>
+                        <ul class="case-list">
+                            <li>提供一站式欧盟隐私保护条例GDPR合规体系建设</li>
+                            <li>联合认证机构CE认证辅导，涵盖文件预审、风险评估、测试对接及技术文档完善，确保各类机电设备及商品合规上架</li>
+                            <li>梳理并重构线上销售条款与退换货政策，降低跨国客诉、争议解决与仲裁风险</li>
+                            <li>统筹办理中东欧多国税号，处理复杂的关联交易和转移定价事宜，提供精准的税务筹划方案</li>
+                        </ul>
+                    </div>
+
+                    <!-- 航空运输行业 -->
+                    <div class="case-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="case-industry">航空运输行业</div>
+                        <div class="case-title">国内航空货运企业匈牙利全资子公司及货站建设</div>
+                        <div class="case-section-title">背景</div>
+                        <div class="case-content">
+                            某国内航空货运企业为拓展中东欧航线网络，计划在匈牙利设立全资子公司并建设航空货运货站，以提升区域航空物流枢纽能力。项目涉及大规模基础设施投资及复杂的跨境融资安排，包括内保外贷结构设计、抵质押安排以及资金合规监管。同时，企业还需协调当地政府建设许可审批，并解决跨国机组人员与管理团队的签证办理、双重征税及个人所得税安排等问题。
+                        </div>
+                        <div class="case-section-title">方案</div>
+                        <ul class="case-list">
+                            <li>协助客户在匈牙利购买航空仓储设施及物流仓库资产，提供包括尽职调查、交易结构设计、不动产买卖合同审查、产权登记及交割流程支持等法律服务</li>
+                            <li>协助企业对接当地监管机构，推进航空货站建设所涉及的建设许可、生产许可及环保听证会程序，确保项目合规推进</li>
+                            <li>为外派高管、机组及地勤人员办理签证及居留许可，并提供跨国薪酬结构设计、个人所得税计算及税务筹划，有效降低双重征税风险</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部联系 -->
+    <section class="footer-contact" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="徕欧" />
+                    </div>
+                    <p>专业跨境企业服务平台<br />助力中国企业稳健布局中东欧市场</p>
+                    <div class="footer-qr">
+                        <img src="images/qr-code.jpeg" alt="扫码联系我们" />
+                        <span>扫码联系我们</span>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>服务内容</h4>
+                        <ul>
+                            <li><a href="company-registration.html">公司注册</a></li>
+                            <li><a href="tax-compliance.html">财税合规</a></li>
+                            <li><a href="legal-consultation.html">法律咨询</a></li>
+                            <li><a href="qualifications.html">资质办理</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>国家/地区</h4>
+                        <ul>
+                            <li><a href="./pages/country/hungary.html">匈牙利</a></li>
+                            <li><a href="./pages/country/slovakia.html">斯洛伐克</a></li>
+                            <li><a href="./pages/country/romania.html">罗马尼亚</a></li>
+                            <li><a href="./pages/country/czech.html">捷克</a></li>
+                            <li><a href="./pages/country/poland.html">波兰</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>关于我们</h4>
+                        <ul>
+                            <li><a href="./about.html">公司简介</a></li>
+                            <li><a href="./about.html">团队介绍</a></li>
+                            <li><a href="./contact.html">联系我们</a></li>
+                            <li><a href="#">隐私政策</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">© 2026 徕欧. All rights reserved.</div>
+        </div>
+    </section>
+
+    <script>
+        // 移动端菜单切换
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+
+        // 移动端子菜单切换
+        function toggleSubmenu(element) {
+            const parent = element.parentElement;
+            parent.classList.toggle('active');
+        }
+
+        // 点击页面其他地方关闭菜单
+        document.addEventListener('click', function (e) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // 多语言切换 (Simple mockup)
+        document.querySelectorAll('.lang-item').forEach(item => {
+            item.addEventListener('click', function () {
+                document.querySelectorAll('.lang-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // 轮播图逻辑
+        document.addEventListener('DOMContentLoaded', function () {
+            const track = document.getElementById('sliderTrack');
+            const cards = document.querySelectorAll('.case-card');
+            const prevBtn = document.getElementById('sliderPrev');
+            const nextBtn = document.getElementById('sliderNext');
+
+            if (!track || cards.length === 0) return;
+
+            let currentIndex = 0;
+            let cardsPerView = 3;
+
+            function updateCardsPerView() {
+                if (window.innerWidth <= 768) {
+                    cardsPerView = 1;
+                } else if (window.innerWidth <= 1200) {
+                    cardsPerView = 2;
+                } else {
+                    cardsPerView = 3;
+                }
+                goToSlide(currentIndex);
+            }
+
+            function goToSlide(index) {
+                const totalCards = cards.length;
+                const maxIndex = Math.max(0, totalCards - cardsPerView);
+
+                if (index < 0) {
+                    currentIndex = maxIndex;
+                } else if (index > maxIndex) {
+                    currentIndex = 0;
+                } else {
+                    currentIndex = index;
+                }
+
+                const cardWidth = cards[0].offsetWidth;
+                const gap = 30;
+                const offset = -(cardWidth + gap) * currentIndex;
+
+                track.style.transform = `translateX(${offset}px)`;
+            }
+
+            prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+            nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+            window.addEventListener('resize', updateCardsPerView);
+            updateCardsPerView();
+        });
+    </script>
+
+    <!-- AOS 动画库 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 初始化 AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100
+        });
+    </script>
+
+</body>
+
+</html>

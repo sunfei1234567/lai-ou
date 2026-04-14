@@ -1,0 +1,326 @@
+/* 徕欧智汇页面样式 */
+
+/* 章节标题 */
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.section-header p {
+  font-size: 16px;
+  color: var(--gray-dark);
+}
+
+/* 案例展示 */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.case-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(9, 81, 155, 0.08);
+  transition: all 0.3s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(9, 81, 155, 0.1);
+}
+
+.case-image {
+  height: 200px;
+  background: var(--gray-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-placeholder {
+  color: var(--gray-medium);
+}
+
+.case-content {
+  padding: 25px;
+}
+
+.case-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(9, 81, 155, 0.1);
+  color: var(--primary-color);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.case-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.case-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-dark);
+  margin-bottom: 15px;
+}
+
+.case-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  color: var(--gray-medium);
+}
+
+.case-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.country-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(9, 81, 155, 0.08);
+  border-radius: 20px;
+  font-size: 12px;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.country-tag img {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 行业洞察 */
+.insights-section {
+  padding: 80px 0;
+  background: var(--gray-light);
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.insight-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(9, 81, 155, 0.08);
+  transition: all 0.3s ease;
+}
+
+.insight-card:hover {
+  box-shadow: 0 10px 30px rgba(9, 81, 155, 0.08);
+  transform: translateY(-3px);
+}
+
+.insight-date {
+  font-size: 13px;
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.insight-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.insight-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-dark);
+  margin-bottom: 20px;
+}
+
+.insight-link {
+  font-size: 14px;
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.3s ease;
+}
+
+.insight-link:hover {
+  gap: 10px;
+}
+
+/* 核心数据 */
+.stats-section {
+  padding: 80px 0;
+  background: var(--primary-color);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+
+.stat-item {
+  color: var(--white);
+}
+
+.stat-number {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* 客户评价 */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(9, 81, 155, 0.08);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 10px 30px rgba(9, 81, 155, 0.08);
+}
+
+.testimonial-quote {
+  font-size: 60px;
+  color: var(--primary-color);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: -20px;
+}
+
+.testimonial-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--gray-dark);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  border-top: 1px solid rgba(9, 81, 155, 0.1);
+  padding-top: 15px;
+}
+
+.author-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.author-company {
+  font-size: 13px;
+  color: var(--primary-color);
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 100px 0;
+  background: var(--gray-light);
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.cta-content p {
+  font-size: 18px;
+  color: var(--gray-dark);
+  margin-bottom: 30px;
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .cases-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .cases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .stat-number {
+    font-size: 40px;
+  }
+
+  .cta-content h2 {
+    font-size: 28px;
+  }
+}

@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>徕欧 - 专业跨境企业服务平台</title>
+    <link rel="stylesheet" href="style/common.css" />
+    <link rel="stylesheet" href="style/index.css" />
+    <!-- AOS 动画库 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- 顶部信息栏 -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-left">
+                <div class="top-bar-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    <span>+86 13776009415</span>
+                </div>
+                <div class="top-bar-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    <span>dapeng.liang@laiouglobal.com</span>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <!-- <div class="lang-switcher">
+                    <span class="lang-item active" data-lang="zh">中文</span>
+                    <span class="lang-divider">|</span>
+                    <span class="lang-item" data-lang="en">English</span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <img src="images/logo.png" alt="徕欧" onerror="this.style.display = 'none'" />
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">首页</a>
+                <div class="nav-item has-submenu">
+                    服务内容
+                    <div class="submenu">
+                        <a href="company-registration.html">公司注册</a>
+                        <a href="tax-compliance.html">财税合规</a>
+                        <a href="legal-consultation.html">法律咨询</a>
+                        <a href="qualifications.html">资质办理</a>
+                    </div>
+                </div>
+                <div class="nav-item has-submenu">
+                    国家/地区
+                    <div class="submenu">
+                        <a href="pages/country/hungary.html" class="submenu-item">
+                            <img src="images/xiongyali.png" alt="匈牙利" />
+                            <span>匈牙利</span>
+                        </a>
+                        <a href="pages/country/slovakia.html" class="submenu-item">
+                            <img src="images/siluofake.png" alt="斯洛伐克" />
+                            <span>斯洛伐克</span>
+                        </a>
+                        <a href="pages/country/romania.html" class="submenu-item">
+                            <img src="images/luomaniya.png" alt="罗马尼亚" />
+                            <span>罗马尼亚</span>
+                        </a>
+                        <a href="pages/country/czech.html" class="submenu-item">
+                            <img src="images/jieke.png" alt="捷克" />
+                            <span>捷克</span>
+                        </a>
+                        <a href="pages/country/poland.html" class="submenu-item">
+                            <img src="images/bolan.png" alt="波兰" />
+                            <span>波兰</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-item">关于我们</a>
+                <a href="cases.html" class="nav-item">徕欧智汇</a>
+            </nav>
+
+            <a href="contact.html" class="contact-btn"> 联系我们 ↗ </a>
+
+            <!-- 移动端汉堡菜单按钮 -->
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- 移动端导航菜单 -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-nav-item">首页</a>
+            <div class="mobile-nav-item has-submenu">
+                <span onclick="toggleSubmenu(this)">服务内容</span>
+                <div class="mobile-submenu">
+                    <a href="company-registration.html">公司注册</a>
+                    <a href="tax-compliance.html">财税合规</a>
+                    <a href="legal-consultation.html">法律咨询</a>
+                    <a href="qualifications.html">资质办理</a>
+                </div>
+            </div>
+            <div class="mobile-nav-item has-submenu">
+                <span onclick="toggleSubmenu(this)">国家/地区</span>
+                <div class="mobile-submenu">
+                    <a href="pages/country/hungary.html">匈牙利</a>
+                    <a href="pages/country/slovakia.html">斯洛伐克</a>
+                    <a href="pages/country/romania.html">罗马尼亚</a>
+                    <a href="pages/country/czech.html">捷克</a>
+                    <a href="pages/country/poland.html">波兰</a>
+                </div>
+            </div>
+            <a href="about.html" class="mobile-nav-item">关于我们</a>
+            <a href="cases.html" class="mobile-nav-item">徕欧智汇</a>
+            <a href="contact.html" class="mobile-nav-item mobile-contact">联系我们</a>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-aos="fade-up" data-aos-delay="0">专业跨境企业服务</h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    助力中国企业稳健布局中东欧市场
+                </p>
+                <p class="hero-description" data-aos="fade-up" data-aos-delay="200">
+                    徕欧专注为企业提供一站式跨境服务解决方案，涵盖公司注册、财税合规、法律咨询、资质办理等全方位服务。深耕中东欧多年，助力企业合规出海、行稳致远。
+                </p>
+                <button class="cta-button" onclick="scrollToForm()" data-aos="fade-up" data-aos-delay="300">
+                    咨询获取方案
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="hero-wave"></div>
+    </section>
+
+    <!-- 服务内容 -->
+    <section class="services-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>我们的服务</h2>
+                <p>全方位跨境企业服务，助力企业稳健出海</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                    </div>
+                    <h3>中东欧公司注册</h3>
+                    <p>专业团队协助您在匈牙利、波兰、捷克等国快速完成公司注册</p>
+                    <a href="company-registration.html" class="service-link">查看详情 →</a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
+                    </div>
+                    <h3>财税合规与会计服务</h3>
+                    <p>专业会计团队提供做账、审计、税务筹划等合规服务</p>
+                    <a href="tax-compliance.html" class="service-link">查看详情 →</a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                    <h3>法律咨询与风险预防</h3>
+                    <p>资深律师团队提供法律咨询、合同审查、风险防控服务</p>
+                    <a href="legal-consultation.html" class="service-link">查看详情 →</a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <path d="M22 4L12 14.01l-3-3" />
+                        </svg>
+                    </div>
+                    <h3>各类认证及资质办理</h3>
+                    <p>协助企业办理各类国际认证、行业资质、市场准入许可</p>
+                    <a href="qualifications.html" class="service-link">查看详情 →</a>
+                </div>
+
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3" />
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                        </svg>
+                    </div>
+                    <h3>定制化服务</h3>
+                    <p>根据企业需求提供个性化解决方案，满足差异化需求</p>
+                    <a href="./contact.html#contactForm" class="service-link">查看详情 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于徕欧 -->
+    <section class="about-section" data-aos="fade-up">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-up">
+                    <img src="images/about.jpg" alt="徕欧团队展示" />
+                </div>
+                <div class="about-text" data-aos="fade-up" data-aos-delay="100">
+                    <h2>关于徕欧</h2>
+                    <p>
+                        徕欧是一家专注于跨境企业服务的专业机构，致力于为中国企业提供全方位的中东欧市场解决方案。我们拥有多年行业经验的专家团队，熟悉各国法律法规和商业环境。
+                    </p>
+                    <p>
+                        自成立以来，徕欧已成功帮助数百家中国企业完成海外布局，涵盖制造业、贸易、科技等多个领域。我们始终坚持"专业、合规、高效"的服务理念，助力企业稳健发展。
+                    </p>
+
+                    <a href="./about.html" class="about-more-btn">了解更多 →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务网络 -->
+    <section class="network-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>服务网络</h2>
+                <p>深耕中东欧，服务覆盖五大核心国家</p>
+            </div>
+
+            <div class="country-grid">
+                <div class="country-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="country-flag">
+                        <img src="images/xiongyali.png" alt="匈牙利国旗" />
+                    </div>
+                    <h4>匈牙利</h4>
+                    <p>公司注册 / 财税服务</p>
+                    <a href="./pages/country/hungary.html" class="country-card-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="country-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="country-flag">
+                        <img src="images/siluofake.png" alt="斯洛伐克国旗" />
+                    </div>
+                    <h4>斯洛伐克</h4>
+                    <p>公司注册 / 银行开户</p>
+                    <a href="./pages/country/slovakia.html" class="country-card-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="country-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="country-flag">
+                        <img src="images/luomaniya.png" alt="罗马尼亚国旗" />
+                    </div>
+                    <h4>罗马尼亚</h4>
+                    <p>法律咨询 / 资质办理</p>
+                    <a href="./pages/country/romania.html" class="country-card-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="country-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="country-flag">
+                        <img src="images/jieke.png" alt="捷克国旗" />
+                    </div>
+                    <h4>捷克</h4>
+                    <p>公司注册 / 财税合规</p>
+                    <a href="./pages/country/czech.html" class="country-card-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="country-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="country-flag">
+                        <img src="images/bolan.png" alt="波兰国旗" />
+                    </div>
+                    <h4>波兰</h4>
+                    <p>全链条服务支持</p>
+                    <a href="./pages/country/poland.html" class="country-card-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 徕欧智汇 -->
+    <section class="insights-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>徕欧智汇</h2>
+                <p>洞察行业动态，分享实战经验</p>
+            </div>
+
+            <div class="insights-tabs" data-aos="fade-up">
+                <div class="tab-nav">
+                    <div class="tab-item active" data-tab="cases">出海案例分享</div>
+                    <div class="tab-item" data-tab="news">海外动态</div>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-panel active" id="cases">
+                        <div class="insight-list">
+                            <div class="insight-item" data-aos="fade-up" data-aos-delay="0">
+                                <div class="insight-img">案例</div>
+                                <div class="insight-info">
+                                    <h4>某制造企业匈牙利设厂全流程实录</h4>
+                                    <p>从选址到运营的完整经验分享</p>
+                                </div>
+                            </div>
+                            <div class="insight-item" data-aos="fade-up" data-aos-delay="100">
+                                <div class="insight-img">案例</div>
+                                <div class="insight-info">
+                                    <h4>跨境电商波兰VAT注册实战案例</h4>
+                                    <p>避坑指南与合规要点解析</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="news">
+                        <div class="insight-list">
+                            <div class="insight-item" data-aos="fade-up" data-aos-delay="0">
+                                <div class="insight-img">资讯</div>
+                                <div class="insight-info">
+                                    <h4>中东欧最新投资政策解读</h4>
+                                    <p>2024年各国政策变化汇总</p>
+                                </div>
+                            </div>
+                            <div class="insight-item" data-aos="fade-up" data-aos-delay="100">
+                                <div class="insight-img">资讯</div>
+                                <div class="insight-info">
+                                    <h4>欧盟税务合规新规的影响分析</h4>
+                                    <p>企业应对策略与建议</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Q&A -->
+    <section class="qa-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>常见问题</h2>
+                <p>解答您最关心的跨境服务问题</p>
+            </div>
+
+            <div class="qa-grid">
+                <div class="qa-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="qa-question">
+                        <span class="qa-question-icon">Q</span>
+                        在中东欧国家注册公司需要多长时间？
+                    </div>
+                    <div class="qa-answer">
+                        不同国家办理时间有所不同，一般情况下匈牙利需要2-4周，波兰需要3-5周，捷克需要2-4周。具体时间取决于材料准备情况和当地政府部门效率。
+                    </div>
+                </div>
+
+                <div class="qa-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="qa-question">
+                        <span class="qa-question-icon">Q</span>
+                        境外公司如何进行税务申报？
+                    </div>
+                    <div class="qa-answer">
+                        我们提供专业的财税服务团队，协助您了解当地税务法规，按时完成税务申报。一般需要每月/每季度申报增值税，每年进行年度审计。
+                    </div>
+                </div>
+
+                <div class="qa-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="qa-question">
+                        <span class="qa-question-icon">Q</span>
+                        哪些行业适合前往中东欧投资？
+                    </div>
+                    <div class="qa-answer">
+                        中东欧地区对制造业、贸易、科技、电商等行业有较大吸引力。特别是汽车零部件、电子制造、跨境电商等领域有很好的投资机遇。
+                    </div>
+                </div>
+
+                <div class="qa-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="qa-question">
+                        <span class="qa-question-icon">Q</span>
+                        徕欧的服务流程是怎样的？
+                    </div>
+                    <div class="qa-answer">
+                        我们的服务流程包括：需求沟通 → 方案制定 → 材料准备 → 官方办理 →
+                        后续维护。全程专业团队跟进，确保流程合规高效。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系表单 -->
+    <section class="contact-form-section" id="contactForm" data-aos="fade-up">
+        <div class="container">
+            <div class="contact-form-wrapper">
+                <div class="contact-form-left" data-aos="fade-up">
+                    <h2>联系我们</h2>
+                    <p>
+                        徕欧致力于为企业提供全方位的跨境服务，包括公司注册、许可与合规、税务与会计、法律与人力资源解决方案、知识产权保护，以及海外选址与市场调研，帮助您快速建立全球布局，实现稳步增长。
+                    </p>
+                    <p>
+                        如果您对我们的服务或行业案例有任何疑问，欢迎留言咨询。我们期待与您共同探索全球商机。
+                    </p>
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <h4>电话/微信</h4>
+                            <p>137 760 09415</p>
+                        </div>
+
+
+                        <div class="contact-info-item">
+                            <h4>邮箱</h4>
+                            <p>dapeng.liang@laiouglobal.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-right" data-aos="fade-up" data-aos-delay="100">
+                    <h3>让我们一起开启项目合作</h3>
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>姓名 <span class="required">*</span></label>
+                                <input type="text" placeholder="您的姓名" required />
+                            </div>
+                            <div class="form-group">
+                                <label>手机号码 <span class="required">*</span></label>
+                                <input type="tel" placeholder="您的手机号码" required />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>微信</label>
+                                <input type="text" placeholder="您的微信号" />
+                            </div>
+                            <div class="form-group">
+                                <label>邮箱</label>
+                                <input type="email" placeholder="您的联系邮箱" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>选择服务 <span class="required">*</span></label>
+                            <select required>
+                                <option value="">选择服务</option>
+                                <option value="company">公司注册</option>
+                                <option value="finance">财税合规</option>
+                                <option value="legal">法律咨询</option>
+                                <option value="qualification">资质办理</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>留言 <span class="required">*</span></label>
+                            <textarea rows="4" placeholder="您的公司类别与具体咨询情况说明" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">发送信息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部联系 -->
+    <section class="footer-contact" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="images/logo.png" alt="徕欧" />
+                    </div>
+                    <p>专业跨境企业服务平台<br />助力中国企业稳健布局中东欧市场</p>
+                    <div class="footer-qr">
+                        <img src="images/qr-code.jpeg" alt="扫码联系我们" />
+                        <span>扫码联系我们</span>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>服务内容</h4>
+                        <ul>
+                            <li><a href="company-registration.html">公司注册</a></li>
+                            <li><a href="tax-compliance.html">财税合规</a></li>
+                            <li><a href="legal-consultation.html">法律咨询</a></li>
+                            <li><a href="qualifications.html">资质办理</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>国家/地区</h4>
+                        <ul>
+                            <li><a href="./pages/country/hungary.html">匈牙利</a></li>
+                            <li><a href="./pages/country/slovakia.html">斯洛伐克</a></li>
+                            <li><a href="./pages/country/romania.html">罗马尼亚</a></li>
+                            <li><a href="./pages/country/czech.html">捷克</a></li>
+                            <li><a href="./pages/country/poland.html">波兰</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>关于我们</h4>
+                        <ul>
+                            <li><a href="./about.html">公司简介</a></li>
+                            <li><a href="./about.html">团队介绍</a></li>
+                            <li><a href="./contact.html">联系我们</a></li>
+                            <li><a href="#">隐私政策</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">© 2026 徕欧. All rights reserved.</div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToForm() {
+            document
+                .getElementById("contactForm")
+                .scrollIntoView({ behavior: "smooth" });
+        }
+
+        // 移动端菜单切换
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById("mobileMenu");
+            const menuToggle = document.querySelector(".mobile-menu-toggle");
+            mobileMenu.classList.toggle("active");
+            menuToggle.classList.toggle("active");
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById("mobileMenu");
+            const menuToggle = document.querySelector(".mobile-menu-toggle");
+            mobileMenu.classList.remove("active");
+            menuToggle.classList.remove("active");
+        }
+
+        // 移动端子菜单切换
+        function toggleSubmenu(element) {
+            const parent = element.parentElement;
+            parent.classList.toggle("active");
+        }
+
+        // 点击页面其他地方关闭菜单
+        document.addEventListener("click", function (e) {
+            const mobileMenu = document.getElementById("mobileMenu");
+            const menuToggle = document.querySelector(".mobile-menu-toggle");
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // 多语言切换
+        document.querySelectorAll(".lang-item").forEach((item) => {
+            item.addEventListener("click", function () {
+                document
+                    .querySelectorAll(".lang-item")
+                    .forEach((i) => i.classList.remove("active"));
+                this.classList.add("active");
+                const lang = this.getAttribute("data-lang");
+                console.log("切换到语言:", lang);
+                // 这里可以添加实际的语言切换逻辑
+            });
+        });
+
+        // Hero 视差滚动效果
+        const heroBg = document.querySelector(".hero-bg");
+        if (heroBg) {
+            window.addEventListener("scroll", () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * 0.5;
+                heroBg.style.transform = `translateY(${rate}px)`;
+            });
+        }
+
+        // 徕欧智汇 Tab 切换
+        document.querySelectorAll(".tab-item").forEach((tab) => {
+            tab.addEventListener("click", function () {
+                const targetTab = this.getAttribute("data-tab");
+
+                // 移除所有 active 状态
+                document
+                    .querySelectorAll(".tab-item")
+                    .forEach((t) => t.classList.remove("active"));
+                document
+                    .querySelectorAll(".tab-panel")
+                    .forEach((p) => p.classList.remove("active"));
+
+                // 添加当前 active 状态
+                this.classList.add("active");
+                document.getElementById(targetTab).classList.add("active");
+            });
+        });
+    </script>
+
+    <!-- AOS 动画库 -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // 初始化 AOS
+        AOS.init({
+            duration: 800,
+            easing: "ease-out-cubic",
+            once: true,
+            offset: 100,
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+/* 公司注册页面特有样式 */
+
+/* 案例展示轮播 */
+.cases-slider-section {
+    padding: 80px 0;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.cases-slider-section .section-title {
+    margin-bottom: 40px;
+}
+
+.slider-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.slider-wrapper {
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 30px;
+}
+
+.case-card {
+    flex: 0 0 calc(33.333% - 20px);
+    background: var(--white);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.case-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(9, 81, 155, 0.1);
+}
+
+.case-industry {
+    font-size: 13px;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: inline-block;
+    width: fit-content;
+    background: rgba(9, 81, 155, 0.08);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.case-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.case-section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 10px;
+}
+
+.case-content {
+    font-size: 14px;
+    color: var(--gray-dark);
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.case-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.case-list li {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: var(--gray-dark);
+    line-height: 1.6;
+}
+
+.case-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: all 0.3s ease;
+    border: none;
+    color: var(--primary-color);
+}
+
+.slider-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.slider-btn.prev {
+    left: 5px;
+}
+
+.slider-btn.next {
+    right: 5px;
+}
+
+.slider-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .case-card {
+        flex: 0 0 calc(50% - 15px);
+    }
+}
+
+@media (max-width: 768px) {
+    .case-card {
+        flex: 0 0 100%;
+    }
+
+    .slider-container {
+        padding: 0 30px;
+    }
+
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .slider-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cases-slider-section {
+        padding: 60px 0;
+    }
+}

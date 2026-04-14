@@ -1,0 +1,428 @@
+/* 关于我们页面样式 */
+
+/* 公司简介 */
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-intro-left h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.about-subtitle {
+  font-size: 16px;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.about-intro-right p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--gray-dark);
+  margin-bottom: 20px;
+}
+
+/* 核心数据 */
+.stats-section {
+  padding: 80px 0;
+  background: var(--primary-color);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+
+.stat-item {
+  color: var(--white);
+}
+
+.stat-number {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* 章节标题 */
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.section-header p {
+  font-size: 16px;
+  color: var(--gray-dark);
+}
+
+.section-header.light h2,
+.section-header.light p {
+  color: var(--white);
+}
+
+/* 优势卡片 */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.advantage-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(9, 81, 155, 0.08);
+  transition: all 0.3s ease;
+}
+
+.advantage-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(9, 81, 155, 0.1);
+}
+
+.advantage-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(9, 81, 155, 0.06);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.advantage-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+}
+
+.advantage-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-dark);
+}
+
+/* 全球布局 */
+.global-section {
+  padding: 80px 0;
+  background: var(--gray-light);
+}
+
+.global-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.global-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 30px;
+  border: 1px solid rgba(9, 81, 155, 0.08);
+  transition: all 0.3s ease;
+}
+
+.global-card:hover {
+  box-shadow: 0 10px 30px rgba(9, 81, 155, 0.1);
+  transform: translateY(-3px);
+}
+
+.global-flag {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 20px;
+}
+
+.global-flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.global-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.global-company {
+  font-size: 14px;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.global-location {
+  font-size: 14px;
+  color: var(--gray-dark);
+}
+
+/* 核心团队 */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.team-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  border: 1px solid rgba(9, 81, 155, 0.08);
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  box-shadow: 0 10px 30px rgba(9, 81, 155, 0.1);
+  transform: translateY(-3px);
+}
+
+.team-avatar {
+  width: 100px;
+  height: 100px;
+  background: rgba(9, 81, 155, 0.06);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  margin: 0 auto 20px;
+  overflow: hidden;
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.yubohan-avatar img {
+  object-position: center 20%;
+}
+
+.team-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 5px;
+}
+
+.team-title {
+  font-size: 14px;
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.team-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--gray-dark);
+}
+
+/* 发展历程 */
+.timeline-section {
+  padding: 80px 0;
+  background: var(--primary-color);
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 50%;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-item:nth-child(even) {
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: 50%;
+}
+
+.timeline-year {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-color);
+  z-index: 1;
+}
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px 25px;
+  max-width: 300px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+  margin-left: 50px;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+  margin-right: 50px;
+}
+
+.timeline-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.timeline-content p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 100px 0;
+  background: var(--gray-light);
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.cta-content p {
+  font-size: 18px;
+  color: var(--gray-dark);
+  margin-bottom: 30px;
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .about-intro {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .advantages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .global-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .timeline::before {
+    left: 30px;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    justify-content: flex-start;
+    padding-left: 80px;
+    padding-right: 0;
+  }
+
+  .timeline-year {
+    left: 30px;
+    transform: translateX(-50%);
+  }
+
+  .timeline-content,
+  .timeline-item:nth-child(even) .timeline-content,
+  .timeline-item:nth-child(odd) .timeline-content {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .advantages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .global-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .stat-number {
+    font-size: 40px;
+  }
+
+  .about-intro-left h2 {
+    font-size: 28px;
+  }
+
+  .cta-content h2 {
+    font-size: 28px;
+  }
+}
