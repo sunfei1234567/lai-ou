@@ -293,7 +293,15 @@
                 </div>
                 <div class="contact-form-right" data-aos="fade-up" data-aos-delay="100">
                     <h3>让我们一起开启项目合作</h3>
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://formsubmit.co/2770894499@qq.com"
+                        method="POST">
+                        <!-- 防垃圾邮件 -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <!-- 提交后跳转回当前页面并显示成功消息 -->
+                        <input type="hidden" name="_next" value="https://laiouglobal.com/contact.html?submitted=true">
+                        <!-- 自定义邮件主题 -->
+                        <input type="hidden" name="_subject" value="【徕欧网站新咨询】收到新的客户留言">
+                        <!-- 表单字段 -->
                         <div class="form-row">
                             <div class="form-group">
                                 <label>姓名 <span class="required">*</span></label>
@@ -318,10 +326,10 @@
                             <label>选择服务 <span class="required">*</span></label>
                             <select name="service" required>
                                 <option value="">选择服务</option>
-                                <option value="company">公司注册</option>
-                                <option value="finance">财税合规</option>
-                                <option value="legal">法律咨询</option>
-                                <option value="qualification">资质办理</option>
+                                <option value="公司注册">公司注册</option>
+                                <option value="财税合规">财税合规</option>
+                                <option value="法律咨询">法律咨询</option>
+                                <option value="资质办理">资质办理</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -487,55 +495,29 @@
             }
         });
 
-        // 联系表单提交
-        document.querySelector('form#contactForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById('submitBtn');
-            const formMessage = document.getElementById('formMessage');
-            const formData = new FormData(this);
-
-            // 构建数据对象
-            const data = {
-                name: formData.get('name'),
-                phone: formData.get('phone'),
-                wechat: formData.get('wechat'),
-                email: formData.get('email'),
-                service: formData.get('service'),
-                message: formData.get('message')
-            };
-
-            // 禁用提交按钮
-            submitBtn.disabled = true;
-            submitBtn.textContent = '发送中...';
-            formMessage.textContent = '';
-            formMessage.style.color = '';
-
-            try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbwMl99sd-rs1P8l0o5IoY6S_BgZD4Br2qyJ0dQSobQf0n8ptMRyy1RSqBmvXnEY_JJb/exec', {
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
+        // 检测表单是否提交成功（通过URL参数）
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('submitted') === 'true') {
+                // 显示成功消息
+                const formMessage = document.getElementById('formMessage');
+                if (formMessage) {
                     formMessage.style.color = '#28a745';
-                    formMessage.textContent = result.message;
-                    this.reset();
-                } else {
-                    formMessage.style.color = '#dc3545';
-                    formMessage.textContent = result.message || '发送失败，请稍后重试';
+                    formMessage.textContent = '提交成功！我们会尽快与您联系。';
                 }
-            } catch (error) {
-                formMessage.style.color = '#dc3545';
-                formMessage.textContent = '网络错误，请检查网络连接后重试';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = '发送信息';
+                // 滚动到表单位置
+                const formSection = document.getElementById('contactForm');
+                if (formSection) {
+                    const headerOffset = 100;
+                    const elementPosition = formSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                // 清除URL参数
+                window.history.replaceState({}, document.title, window.location.pathname);
             }
         });
     </script>
