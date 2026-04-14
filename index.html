@@ -559,9 +559,15 @@
 
     <script>
         function scrollToForm() {
-            document
-                .getElementById("contactForm")
-                .scrollIntoView({ behavior: "smooth" });
+            const formSection = document.getElementById("contactForm");
+            const headerOffset = 100; // 预留头部空间
+            const elementPosition = formSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
         }
 
         // 移动端菜单切换
