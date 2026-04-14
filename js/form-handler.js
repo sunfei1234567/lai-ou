@@ -5,7 +5,7 @@
     'use strict';
 
     // Google Apps Script Web App URL
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxVJAtrf4ZMSC-en6xodCJ6evYcw6699t_Hoh0FZkVb38vZclQVVtbvA8J0jZi1NXU/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwMl99sd-rs1P8l0o5IoY6S_BgZD4Br2qyJ0dQSobQf0n8ptMRyy1RSqBmvXnEY_JJb/exec';
 
     // 初始化表单处理
     function initFormHandler() {
