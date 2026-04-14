@@ -217,7 +217,6 @@
 .contact-form-wrapper {
   display: flex;
   gap: 80px;
-  align-items: flex-start;
 }
 
 .contact-form-left {
