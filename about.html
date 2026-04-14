@@ -151,7 +151,7 @@
     </section>
 
     <!-- 公司简介 -->
-    <section class="white-section">
+    <section class="white-section" id="company-intro">
         <div class="container">
             <div class="about-intro" data-aos="fade-up">
                 <div class="about-intro-left">
@@ -310,7 +310,7 @@
     </section>
 
     <!-- 核心团队 -->
-    <section class="white-section">
+    <section class="white-section" id="team-intro">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>核心团队</h2>
@@ -338,7 +338,7 @@
                     </p>
                 </div>
                 <div class="team-card" data-aos="fade-up" data-aos-delay="200">
-                   
+
                     <h3>Dr. Tibor Lukács</h3>
                     <p class="team-title">法律合规顾问</p>
                     <p class="team-desc">
@@ -346,7 +346,7 @@
                     </p>
                 </div>
                 <div class="team-card" data-aos="fade-up" data-aos-delay="300">
-                    
+
                     <h3>Csilla Fröhlich</h3>
                     <p class="team-title">财务合规顾问</p>
                     <p class="team-desc">
@@ -459,8 +459,8 @@
                     <div class="footer-col">
                         <h4>关于我们</h4>
                         <ul>
-                            <li><a href="./about.html">公司简介</a></li>
-                            <li><a href="./about.html">团队介绍</a></li>
+                            <li><a href="./about.html#company-intro">公司简介</a></li>
+                            <li><a href="./about.html#team-intro">团队介绍</a></li>
                             <li><a href="./contact.html">联系我们</a></li>
                             <li><a href="#">隐私政策</a></li>
                         </ul>
@@ -493,6 +493,45 @@
             const parent = element.parentElement;
             parent.classList.toggle('active');
         }
+
+        // 锚点滚动偏移处理（避免被固定导航栏遮挡）
+        document.addEventListener('DOMContentLoaded', function () {
+            // 处理页面加载时的锚点
+            if (window.location.hash) {
+                setTimeout(function () {
+                    const target = document.querySelector(window.location.hash);
+                    if (target) {
+                        const headerOffset = 120; // 导航栏高度
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 100);
+            }
+
+            // 处理页面内锚点点击
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        const headerOffset = 120;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
     </script>
 </body>
 
