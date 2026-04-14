@@ -143,7 +143,7 @@
         <div class="contact-hero-bg" style="background-image: url('images/contact-map-banner.jpg');"></div>
         <div class="container">
             <div class="contact-hero-content" data-aos="fade-up">
-                <h1>联系徕欧Laiou —— 您的中东欧出海合规顾问</h1>
+                <h1>联系徕欧Laiou<br /> 您的中东欧出海合规顾问</h1>
                 <p class="contact-hero-subtitle">提供全天候中文服务，零时差无障碍沟通，最快15个工作日助您落地中东欧大市场</p>
                 <div class="contact-hero-badges">
                     <span class="badge">
@@ -170,6 +170,12 @@
                         全程合规保障
                     </span>
                 </div>
+                <button class="cta-button" onclick="scrollToForm()" style="margin-top: 30px;">
+                    立即咨询
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
             </div>
         </div>
     </section>
@@ -457,6 +463,19 @@
         function toggleSubmenu(element) {
             const parent = element.parentElement;
             parent.classList.toggle('active');
+        }
+
+        // 滚动到联系表单
+        function scrollToForm() {
+            const formSection = document.getElementById('contactForm');
+            const headerOffset = 100;
+            const elementPosition = formSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         }
 
         // 点击页面其他地方关闭菜单
