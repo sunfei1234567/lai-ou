@@ -9,7 +9,7 @@
 
 .about-page .subpage-hero::before,
 .cases-page .subpage-hero::before {
-  background: rgba(0, 0, 0, 0.10);
+  background: rgba(0, 0, 0, 0.30);
 }
 
 .about-page .subpage-hero .container,
