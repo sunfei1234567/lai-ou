@@ -1,0 +1,494 @@
+{% extends "base.html" %}
+
+{% block title %}案例管理 - 徕欧科技管理系统{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-textarea {
+        width: 100%;
+        min-height: 300px;
+        padding: 12px 16px;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        background: var(--color-surface);
+        color: var(--color-text);
+        font-size: 14px;
+        line-height: 1.6;
+        resize: vertical;
+        font-family: inherit;
+    }
+
+    .form-textarea:focus {
+        outline: none;
+        border-color: var(--color-btn-bg);
+    }
+
+    .form-textarea::placeholder {
+        color: var(--color-text-muted);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="徕欧科技"
+                    style="max-width: 140px; height: auto;">
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('admin_dashboard') }}" class="nav-item">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <rect x="2" y="2" width="6" height="6" rx="1" />
+                        <rect x="12" y="2" width="6" height="6" rx="1" />
+                        <rect x="2" y="12" width="6" height="6" rx="1" />
+                        <rect x="12" y="12" width="6" height="6" rx="1" />
+                    </svg>
+                </span>
+                控制台
+            </a>
+            <a href="{{ url_for('admin_cases') }}" class="nav-item active">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M3 6h14M3 10h14M3 14h14" />
+                    </svg>
+                </span>
+                案例管理
+            </a>
+            <a href="{{ url_for('admin_consultations') }}" class="nav-item">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M2 5h16v10H2z" />
+                        <path d="M2 5l8 6 8-6" />
+                    </svg>
+                </span>
+                客户咨询
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <div class="user-details">
+                    <div class="user-name">{{ session.admin_username }}</div>
+                    <div class="user-role">管理员</div>
+                </div>
+                <a href="{{ url_for('admin_logout') }}" class="logout-btn">退出</a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">案例管理</h1>
+            <p class="page-subtitle">管理展示案例，支持增删改查操作</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">案例列表</h3>
+                <button class="btn btn-primary" onclick="openCreateModal()">
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"
+                        style="margin-right: 8px;">
+                        <path d="M10 4v12M4 10h12" />
+                    </svg>
+                    添加案例
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="toolbar">
+                    <div class="search-box">
+                        <span class="search-icon">
+                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="9" cy="9" r="6" />
+                                <path d="M15 15l4 4" />
+                            </svg>
+                        </span>
+                        <input type="text" id="searchInput" placeholder="搜索案例标题..." onkeyup="handleSearch()">
+                    </div>
+                    <select id="categoryFilter" class="form-select" style="width: 140px;" onchange="loadCases()">
+                        <option value="">全部分类</option>
+                        <option value="品牌设计">品牌设计</option>
+                        <option value="网站开发">网站开发</option>
+                        <option value="移动应用">移动应用</option>
+                        <option value="UI/UX设计">UI/UX设计</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table" id="casesTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 60px;">ID</th>
+                                <th>封面</th>
+                                <th>行业</th>
+                                <th>标题</th>
+                                <th>国家</th>
+                                <th>时间</th>
+                                <th>精选</th>
+                                <th>状态</th>
+                                <th style="width: 140px;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="casesTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Create/Edit Modal -->
+<div class="modal-overlay" id="caseModal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modalTitle">添加案例</h3>
+            <button class="modal-close" onclick="closeModal('caseModal')">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M5 5l10 10M15 5l-10 10" />
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="caseForm">
+                <input type="hidden" id="caseId">
+                <div class="form-group">
+                    <label class="form-label">案例标题 *</label>
+                    <input type="text" id="title" class="form-input" required>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label class="form-label">行业 *</label>
+                        <select id="category" class="form-select" required>
+                            <option value="制造业">制造业</option>
+                            <option value="跨境电商">跨境电商</option>
+                            <option value="投资并购">投资并购</option>
+                            <option value="资质认证">资质认证</option>
+                            <option value="财税合规">财税合规</option>
+                            <option value="人力资源">人力资源</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">国家 *</label>
+                        <select id="country" class="form-select" required>
+                            <option value="">请选择国家</option>
+                            <option value="匈牙利">匈牙利</option>
+                            <option value="斯洛伐克">斯洛伐克</option>
+                            <option value="罗马尼亚">罗马尼亚</option>
+                            <option value="捷克">捷克</option>
+                            <option value="波兰">波兰</option>
+                            <option value="多国">多国</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label class="form-label">时间</label>
+                        <input type="text" id="projectDate" class="form-input" placeholder="2025年">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">排序</label>
+                        <input type="number" id="sortOrder" class="form-input" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">封面图片</label>
+                    <div style="display: flex; gap: 12px; align-items: flex-start;">
+                        <div style="flex: 1;">
+                            <input type="file" id="imageFile" class="form-input"
+                                accept="image/png,image/jpeg,image/jpg,image/gif,image/webp" style="padding: 8px 14px;">
+                            <div style="font-size: 12px; color: var(--color-text-muted); margin-top: 6px;">支持
+                                PNG、JPG、GIF、WebP，最大 5MB</div>
+                        </div>
+                        <button type="button" class="btn btn-secondary" onclick="uploadImage()">上传</button>
+                    </div>
+                    <input type="hidden" id="imageUrl">
+                    <div id="imagePreview" style="margin-top: 12px; display: none;">
+                        <img id="previewImg" src="" alt="预览"
+                            style="max-width: 200px; max-height: 150px; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">简短描述 *</label>
+                    <textarea id="description" class="form-textarea" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">详细内容 *</label>
+                    <textarea id="content" class="form-textarea" rows="15" placeholder="请输入详细内容..."></textarea>
+                </div>
+                <div style="display: flex; gap: 24px;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="isFeatured" style="width: 18px; height: 18px;">
+                        <span>设为精选案例</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <input type="checkbox" id="status" checked style="width: 18px; height: 18px;">
+                        <span>显示</span>
+                    </label>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal('caseModal')">取消</button>
+            <button class="btn btn-primary" onclick="saveCase()">保存</button>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    let currentPage = 1;
+    let searchTimeout;
+
+    function handleSearch() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            currentPage = 1;
+            loadCases();
+        }, 300);
+    }
+
+    async function loadCases() {
+        const keyword = document.getElementById('searchInput').value;
+        const category = document.getElementById('categoryFilter').value;
+
+        try {
+            const response = await fetch(`/api/cases?page=${currentPage}&keyword=${keyword}&category=${category}`);
+            const result = await response.json();
+
+            if (result.code === 200) {
+                renderCases(result.data.items);
+                renderPagination(result.data);
+            }
+        } catch (error) {
+            showToast('加载失败', 'error');
+        }
+    }
+
+    function renderCases(cases) {
+        const tbody = document.getElementById('casesTableBody');
+
+        if (cases.length === 0) {
+            tbody.innerHTML = `
+            <tr>
+                <td colspan="8">
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <svg width="32" height="32" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 6h14M3 10h14M3 14h14"/>
+                            </svg>
+                        </div>
+                        <div class="empty-title">暂无案例</div>
+                        <div class="empty-desc">点击右上角按钮添加第一个案例</div>
+                    </div>
+                </td>
+            </tr>
+        `;
+            return;
+        }
+
+        tbody.innerHTML = cases.map(item => `
+        <tr>
+            <td>${item.id}</td>
+            <td>
+                ${item.image_url ? `<img src="${item.image_url}" style="width: 60px; height: 40px; object-fit: cover; border-radius: 4px;">` : '-'}
+            </td>
+            <td>${item.category}</td>
+            <td>
+                <div style="font-weight: 500;">${item.title}</div>
+            </td>
+            <td>${item.country || '-'}</td>
+            <td>${item.project_date || '-'}</td>
+            <td>
+                ${item.is_featured ? '<span class="badge badge-success">精选</span>' : '-'}
+            </td>
+            <td>
+                ${item.status === 1
+                ? '<span class="badge badge-success">显示</span>'
+                : '<span class="badge badge-default">隐藏</span>'
+            }
+            </td>
+            <td>
+                <button class="btn btn-sm btn-secondary" onclick="editCase(${item.id})" style="margin-right: 8px;">编辑</button>
+                <button class="btn btn-sm btn-danger" onclick="deleteCase(${item.id})">删除</button>
+            </td>
+        </tr>
+    `).join('');
+    }
+
+    function renderPagination(data) {
+        const pagination = document.getElementById('pagination');
+        let html = '';
+
+        html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>上一页</button>`;
+
+        for (let i = 1; i <= data.pages; i++) {
+            html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+        }
+
+        html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === data.pages ? 'disabled' : ''}>下一页</button>`;
+
+        pagination.innerHTML = html;
+    }
+
+    function goToPage(page) {
+        currentPage = page;
+        loadCases();
+    }
+
+    function openCreateModal() {
+        document.getElementById('caseForm').reset();
+        document.getElementById('caseId').value = '';
+        document.getElementById('imageUrl').value = '';
+        document.getElementById('imagePreview').style.display = 'none';
+        document.getElementById('previewImg').src = '';
+        document.getElementById('modalTitle').textContent = '添加案例';
+        document.getElementById('status').checked = true;
+        openModal('caseModal');
+    }
+
+    async function uploadImage() {
+        const fileInput = document.getElementById('imageFile');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            showToast('请选择图片文件', 'error');
+            return;
+        }
+
+        // 检查文件大小 (5MB = 5 * 1024 * 1024 bytes)
+        const maxSize = 5 * 1024 * 1024;
+        if (file.size > maxSize) {
+            showToast('图片大小不能超过 5MB', 'error');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.code === 200) {
+                document.getElementById('imageUrl').value = result.data.url;
+                document.getElementById('previewImg').src = result.data.url;
+                document.getElementById('imagePreview').style.display = 'block';
+                showToast('上传成功');
+            } else {
+                showToast(result.message || '上传失败', 'error');
+            }
+        } catch (error) {
+            showToast('上传失败', 'error');
+        }
+    }
+
+    async function editCase(id) {
+        try {
+            const response = await fetch(`/api/cases/${id}`);
+            const result = await response.json();
+
+            if (result.code === 200) {
+                const data = result.data;
+                document.getElementById('caseId').value = data.id;
+                document.getElementById('title').value = data.title;
+                document.getElementById('category').value = data.category;
+                document.getElementById('country').value = data.country || '';
+                document.getElementById('projectDate').value = data.project_date || '';
+                document.getElementById('sortOrder').value = data.sort_order;
+                document.getElementById('imageUrl').value = data.image_url || '';
+                if (data.image_url) {
+                    document.getElementById('previewImg').src = data.image_url;
+                    document.getElementById('imagePreview').style.display = 'block';
+                } else {
+                    document.getElementById('imagePreview').style.display = 'none';
+                    document.getElementById('previewImg').src = '';
+                }
+                document.getElementById('description').value = data.description;
+                document.getElementById('content').value = data.content || '';
+                document.getElementById('isFeatured').checked = data.is_featured;
+                document.getElementById('status').checked = data.status === 1;
+
+                document.getElementById('modalTitle').textContent = '编辑案例';
+                openModal('caseModal');
+            }
+        } catch (error) {
+            showToast('加载失败', 'error');
+        }
+    }
+
+    async function saveCase() {
+        const id = document.getElementById('caseId').value;
+        const data = {
+            title: document.getElementById('title').value,
+            category: document.getElementById('category').value,
+            country: document.getElementById('country').value,
+            project_date: document.getElementById('projectDate').value,
+            sort_order: parseInt(document.getElementById('sortOrder').value) || 0,
+            image_url: document.getElementById('imageUrl').value,
+            description: document.getElementById('description').value,
+            content: document.getElementById('content').value,
+            is_featured: document.getElementById('isFeatured').checked,
+            status: document.getElementById('status').checked ? 1 : 0
+        };
+
+        try {
+            const url = id ? `/api/cases/${id}` : '/api/cases';
+            const method = id ? 'PUT' : 'POST';
+
+            const response = await fetch(url, {
+                method: method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (result.code === 200) {
+                showToast(id ? '更新成功' : '创建成功');
+                closeModal('caseModal');
+                loadCases();
+            } else {
+                showToast(result.message || '操作失败', 'error');
+            }
+        } catch (error) {
+            showToast('保存失败', 'error');
+        }
+    }
+
+    async function deleteCase(id) {
+        if (!confirm('确定要删除这个案例吗？')) return;
+
+        try {
+            const response = await fetch(`/api/cases/${id}`, { method: 'DELETE' });
+            const result = await response.json();
+
+            if (result.code === 200) {
+                showToast('删除成功');
+                loadCases();
+            } else {
+                showToast(result.message || '删除失败', 'error');
+            }
+        } catch (error) {
+            showToast('删除失败', 'error');
+        }
+    }
+
+    // Load cases on page load
+    loadCases();
+</script>
+{% endblock %}
+{% endblock %}

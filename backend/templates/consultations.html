@@ -1,0 +1,386 @@
+{% extends "base.html" %}
+
+{% block title %}客户咨询 - 徕欧科技管理系统{% endblock %}
+
+{% block content %}
+<div class="admin-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="徕欧科技"
+                    style="max-width: 140px; height: auto;">
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('admin_dashboard') }}" class="nav-item">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <rect x="2" y="2" width="6" height="6" rx="1" />
+                        <rect x="12" y="2" width="6" height="6" rx="1" />
+                        <rect x="2" y="12" width="6" height="6" rx="1" />
+                        <rect x="12" y="12" width="6" height="6" rx="1" />
+                    </svg>
+                </span>
+                控制台
+            </a>
+            <a href="{{ url_for('admin_cases') }}" class="nav-item">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M3 6h14M3 10h14M3 14h14" />
+                    </svg>
+                </span>
+                案例管理
+            </a>
+            <a href="{{ url_for('admin_consultations') }}" class="nav-item active">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M2 5h16v10H2z" />
+                        <path d="M2 5l8 6 8-6" />
+                    </svg>
+                </span>
+                客户咨询
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <div class="user-details">
+                    <div class="user-name">{{ session.admin_username }}</div>
+                    <div class="user-role">管理员</div>
+                </div>
+                <a href="{{ url_for('admin_logout') }}" class="logout-btn">退出</a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">客户咨询</h1>
+            <p class="page-subtitle">管理客户留言咨询，及时跟进处理</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="stat-card">
+                <div class="stat-label">全部咨询</div>
+                <div class="stat-value" id="statTotal">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">待处理</div>
+                <div class="stat-value" id="statPending" style="color: var(--color-warning);">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">已处理</div>
+                <div class="stat-value" id="statProcessed" style="color: var(--color-success);">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">已跟进</div>
+                <div class="stat-value" id="statFollowed" style="color: var(--color-text-secondary);">0</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">咨询列表</h3>
+            </div>
+            <div class="card-body">
+                <div class="toolbar">
+                    <div class="search-box">
+                        <span class="search-icon">
+                            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <circle cx="9" cy="9" r="6" />
+                                <path d="M15 15l4 4" />
+                            </svg>
+                        </span>
+                        <input type="text" id="searchInput" placeholder="搜索姓名、电话..." onkeyup="handleSearch()">
+                    </div>
+                    <select id="statusFilter" class="form-select" style="width: 120px;" onchange="loadConsultations()">
+                        <option value="">全部状态</option>
+                        <option value="0">待处理</option>
+                        <option value="1">已处理</option>
+                        <option value="2">已跟进</option>
+                    </select>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table" id="consultationsTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 60px;">ID</th>
+                                <th>姓名</th>
+                                <th>电话</th>
+                                <th>公司</th>
+                                <th>服务类型</th>
+                                <th>状态</th>
+                                <th>提交时间</th>
+                                <th style="width: 140px;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="consultationsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="detailModal">
+    <div class="modal" style="max-width: 600px;">
+        <div class="modal-header">
+            <h3 class="modal-title">咨询详情</h3>
+            <button class="modal-close" onclick="closeModal('detailModal')">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M5 5l10 10M15 5l-10 10" />
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div id="detailContent">
+            </div>
+            <div class="form-group" style="margin-top: 24px;">
+                <label class="form-label">管理员备注</label>
+                <textarea id="adminRemark" class="form-textarea" rows="3" placeholder="添加跟进记录..."></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal('detailModal')">关闭</button>
+            <button class="btn btn-primary" onclick="updateStatus(1)">标记已处理</button>
+            <button class="btn btn-secondary" onclick="updateStatus(2)">标记已跟进</button>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    let currentPage = 1;
+    let currentConsultationId = null;
+    let searchTimeout;
+
+    function handleSearch() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            currentPage = 1;
+            loadConsultations();
+        }, 300);
+    }
+
+    async function loadConsultations() {
+        const keyword = document.getElementById('searchInput').value;
+        const status = document.getElementById('statusFilter').value;
+
+        try {
+            const response = await fetch(`/api/consultations?page=${currentPage}&keyword=${keyword}&status=${status}`);
+            const result = await response.json();
+
+            if (result.code === 200) {
+                renderConsultations(result.data.items);
+                renderPagination(result.data);
+                updateStats(result.data.stats);
+            }
+        } catch (error) {
+            showToast('加载失败', 'error');
+        }
+    }
+
+    function updateStats(stats) {
+        document.getElementById('statTotal').textContent = stats.total;
+        document.getElementById('statPending').textContent = stats.pending;
+        document.getElementById('statProcessed').textContent = stats.processed;
+        document.getElementById('statFollowed').textContent = stats.followed;
+    }
+
+    function renderConsultations(items) {
+        const tbody = document.getElementById('consultationsTableBody');
+
+        if (items.length === 0) {
+            tbody.innerHTML = `
+            <tr>
+                <td colspan="8">
+                    <div class="empty-state">
+                        <div class="empty-icon">
+                            <svg width="32" height="32" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M2 5h16v10H2z"/>
+                                <path d="M2 5l8 6 8-6"/>
+                            </svg>
+                        </div>
+                        <div class="empty-title">暂无咨询</div>
+                        <div class="empty-desc">客户提交的咨询将显示在这里</div>
+                    </div>
+                </td>
+            </tr>
+        `;
+            return;
+        }
+
+        tbody.innerHTML = items.map(item => {
+            let statusBadge = '';
+            if (item.status === 0) {
+                statusBadge = '<span class="badge badge-warning">待处理</span>';
+            } else if (item.status === 1) {
+                statusBadge = '<span class="badge badge-success">已处理</span>';
+            } else {
+                statusBadge = '<span class="badge badge-default">已跟进</span>';
+            }
+
+            return `
+            <tr>
+                <td>${item.id}</td>
+                <td>
+                    <div style="font-weight: 500;">${item.name}</div>
+                    ${item.email ? `<div style="font-size: 12px; color: var(--color-text-muted);">${item.email}</div>` : ''}
+                </td>
+                <td>${item.phone}</td>
+                <td>${item.company || '-'}</td>
+                <td>${item.service_type || '-'}</td>
+                <td>${statusBadge}</td>
+                <td>${item.created_at}</td>
+                <td>
+                    <button class="btn btn-sm btn-secondary" onclick="viewDetail(${item.id})" style="margin-right: 8px;">查看</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteConsultation(${item.id})">删除</button>
+                </td>
+            </tr>
+        `;
+        }).join('');
+    }
+
+    function renderPagination(data) {
+        const pagination = document.getElementById('pagination');
+        let html = '';
+
+        html += `<button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>上一页</button>`;
+
+        for (let i = 1; i <= data.pages; i++) {
+            html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+        }
+
+        html += `<button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === data.pages ? 'disabled' : ''}>下一页</button>`;
+
+        pagination.innerHTML = html;
+    }
+
+    function goToPage(page) {
+        currentPage = page;
+        loadConsultations();
+    }
+
+    async function viewDetail(id) {
+        currentConsultationId = id;
+
+        try {
+            const response = await fetch(`/api/consultations/${id}`);
+            const result = await response.json();
+
+            if (result.code === 200) {
+                const data = result.data;
+                let statusText = data.status === 0 ? '待处理' : data.status === 1 ? '已处理' : '已跟进';
+                let statusClass = data.status === 0 ? 'badge-warning' : data.status === 1 ? 'badge-success' : 'badge-default';
+
+                document.getElementById('detailContent').innerHTML = `
+                <table style="width: 100%; font-size: 14px; line-height: 2;">
+                    <tr>
+                        <td style="color: var(--color-text-secondary); width: 80px;">姓名</td>
+                        <td style="font-weight: 500;">${data.name}</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--color-text-secondary);">电话</td>
+                        <td>${data.phone}</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--color-text-secondary);">邮箱</td>
+                        <td>${data.email || '-'}</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--color-text-secondary);">公司</td>
+                        <td>${data.company || '-'}</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--color-text-secondary);">服务类型</td>
+                        <td>${data.service_type || '-'}</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--color-text-secondary); vertical-align: top;">留言</td>
+                        <td>
+                            <div style="">
+                                ${data.message}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--color-text-secondary);">状态</td>
+                        <td><span class="badge ${statusClass}">${statusText}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--color-text-secondary);">提交时间</td>
+                        <td>${data.created_at}</td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--color-text-secondary);">IP地址</td>
+                        <td style="font-size: 12px; color: var(--color-text-muted);">${data.ip_address || '-'}</td>
+                    </tr>
+                </table>
+            `;
+                document.getElementById('adminRemark').value = data.admin_remark || '';
+                openModal('detailModal');
+            }
+        } catch (error) {
+            showToast('加载失败', 'error');
+        }
+    }
+
+    async function updateStatus(status) {
+        if (!currentConsultationId) return;
+
+        const remark = document.getElementById('adminRemark').value;
+
+        try {
+            const response = await fetch(`/api/consultations/${currentConsultationId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: status, admin_remark: remark })
+            });
+
+            const result = await response.json();
+
+            if (result.code === 200) {
+                showToast('更新成功');
+                closeModal('detailModal');
+                loadConsultations();
+            } else {
+                showToast(result.message || '更新失败', 'error');
+            }
+        } catch (error) {
+            showToast('更新失败', 'error');
+        }
+    }
+
+    async function deleteConsultation(id) {
+        if (!confirm('确定要删除这条咨询吗？')) return;
+
+        try {
+            const response = await fetch(`/api/consultations/${id}`, { method: 'DELETE' });
+            const result = await response.json();
+
+            if (result.code === 200) {
+                showToast('删除成功');
+                loadConsultations();
+            } else {
+                showToast(result.message || '删除失败', 'error');
+            }
+        } catch (error) {
+            showToast('删除失败', 'error');
+        }
+    }
+
+    // Load consultations on page load
+    loadConsultations();
+</script>
+{% endblock %}
+{% endblock %}

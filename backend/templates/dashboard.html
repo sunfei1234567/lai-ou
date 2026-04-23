@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}控制台 - 徕欧科技管理系统{% endblock %}
+
+{% block content %}
+<div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="徕欧科技"
+                    style="max-width: 140px; height: auto;">
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('admin_dashboard') }}" class="nav-item active">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <rect x="2" y="2" width="6" height="6" rx="1" />
+                        <rect x="12" y="2" width="6" height="6" rx="1" />
+                        <rect x="2" y="12" width="6" height="6" rx="1" />
+                        <rect x="12" y="12" width="6" height="6" rx="1" />
+                    </svg>
+                </span>
+                控制台
+            </a>
+            <a href="{{ url_for('admin_cases') }}" class="nav-item">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M3 6h14M3 10h14M3 14h14" />
+                    </svg>
+                </span>
+                案例管理
+            </a>
+            <a href="{{ url_for('admin_consultations') }}" class="nav-item">
+                <span class="nav-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M2 5h16v10H2z" />
+                        <path d="M2 5l8 6 8-6" />
+                    </svg>
+                </span>
+                客户咨询
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <div class="user-details">
+                    <div class="user-name">{{ session.admin_username }}</div>
+                    <div class="user-role">管理员</div>
+                </div>
+                <a href="{{ url_for('admin_logout') }}" class="logout-btn">退出</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">控制台</h1>
+            <p class="page-subtitle">欢迎回来，查看今日数据概览</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">案例总数</div>
+                <div class="stat-value">{{ stats.cases_count }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">精选案例</div>
+                <div class="stat-value">{{ stats.featured_cases }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">咨询总数</div>
+                <div class="stat-value">{{ stats.consultations_count }}</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">待处理咨询</div>
+                <div class="stat-value" style="color: var(--color-warning);">{{ stats.pending_consultations }}</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">快捷操作</h3>
+            </div>
+            <div class="card-body">
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="{{ url_for('admin_cases') }}" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                            stroke-width="1.5" style="margin-right: 8px;">
+                            <path d="M10 4v12M4 10h12" />
+                        </svg>
+                        添加案例
+                    </a>
+                    <a href="{{ url_for('admin_consultations') }}" class="btn btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                            stroke-width="1.5" style="margin-right: 8px;">
+                            <path d="M2 5h16v10H2z" />
+                            <path d="M2 5l8 6 8-6" />
+                        </svg>
+                        查看咨询
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 系统设置 -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">系统设置</h3>
+            </div>
+            <div class="card-body">
+                <div
+                    style="display: flex; align-items: center; justify-content: space-between; padding: 16px; background: var(--color-bg); border-radius: var(--radius-md);">
+                    <div>
+                        <div style="font-weight: 500; margin-bottom: 4px;">邮件通知</div>
+                        <div style="font-size: 13px; color: var(--color-text-secondary);">开启后，新咨询将同时发送到管理员邮箱</div>
+                    </div>
+                    <label class="switch" style="position: relative; display: inline-block; width: 50px; height: 26px;">
+                        <input type="checkbox" id="emailNotification" style="opacity: 0; width: 0; height: 0;" {% if
+                            email_notification_enabled=='true' %}checked{% endif %}>
+                        <span class="slider"
+                            style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .3s; border-radius: 26px;"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: .3s;
+        border-radius: 50%;
+    }
+
+    input:checked+.slider {
+        background-color: var(--color-btn-bg) !important;
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(24px);
+    }
+</style>
+
+{% block extra_js %}
+<script>
+    // 邮件通知开关
+    document.getElementById('emailNotification').addEventListener('change', async function () {
+        const enabled = this.checked;
+        try {
+            const response = await fetch('/api/settings/email_notification', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ enabled: enabled })
+            });
+            const result = await response.json();
+            if (result.code === 200) {
+                showToast(enabled ? '邮件通知已开启' : '邮件通知已关闭');
+            } else {
+                showToast(result.message || '设置失败', 'error');
+                this.checked = !enabled;
+            }
+        } catch (error) {
+            showToast('设置失败', 'error');
+            this.checked = !enabled;
+        }
+    });
+
+    function showToast(message, type = 'success') {
+        // 简单的提示实现
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            background: ${type === 'success' ? '#16a34a' : '#dc2626'};
+            color: white;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 9999;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+</script>
+{% endblock %}
+{% endblock %}
